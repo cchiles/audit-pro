@@ -226,6 +226,7 @@ class Audit_pro_ext {
             'user_agent'     =>  $this->user_agent
         );
         $this->EE->db->insert('audit_log', $insert_data);
+
         $this->_send_notification($item_type, $entry_id, $create_edit, $item_title, $channel_id);
     }
 
@@ -341,20 +342,26 @@ class Audit_pro_ext {
         foreach($results->result_array() as $notification)
         {
             // If stored item type does not match this item type, exit
-            if ($notification['item_type'] != $item_type)
-                return false;
+            if ($notification['item_type'] != $item_type) {
+                continue;
+            }
             // If stored member ID is to be checked (not 0) and does not match this user, exit
-            if ($notification['member_id'] != $this->member_id && $notification['member_id'] != 0)
-                return false;
+            if ($notification['member_id'] != $this->member_id && $notification['member_id'] != 0) {
+                continue;
+            }
 
-            if ($notification['group_id'] != $this->group_id && $notification['group_id'] != 0)
-                return false;
+            if ($notification['group_id'] != $this->group_id && $notification['group_id'] != 0) {
+                continue;
+            }
             // If stored item ID is to be checked (not 0) and does not match this item ID, exit
-            if ($notification['item_id'] != 0 && $notification['item_id'] != $item_id)
-                return false;
+            if ($notification['item_id'] != 0 && $notification['item_id'] != $item_id) {
+                continue;
+            }
             // If stored Channel ID is to be checked (not 0) and does not match this channel ID, exit
-            if ($notification['channel_id'] != 0 && $notification['channel_id'] != $channel_id)
-                return false;
+            if ($notification['channel_id'] != 0 && $notification['channel_id'] != $channel_id) {
+                continue;
+            }
+            
             // Now we have something to work with!
 
             $this->EE->email->initialize();
@@ -531,7 +538,7 @@ class Audit_pro_ext {
                     $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Edited');
                 break;
             }
-            $email_msg .= "\n\n" . $this->EE->localize->set_human_time($this->timestamp);
+            $email_msg .= "\n\n" . $this->EE->localize->human_time($this->timestamp);
             $this->EE->email->message(entities_to_ascii($email_msg));
             $this->EE->email->Send();
         }
