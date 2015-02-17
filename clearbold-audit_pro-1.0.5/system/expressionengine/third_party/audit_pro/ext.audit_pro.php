@@ -433,7 +433,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nUsername: " . $this->username;
                     $email_msg .= "\n\nEntry ID: " . $item_id;
                     $email_msg .= "\n\nEntry Title: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Entry Deleted');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Entry Deleted - ' . $item_title);
                 break;
 
                 case 'entry_update':
@@ -454,7 +454,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nChannel: " . $channel_title;
                     $email_msg .= "\n\nEntry ID: " . $item_id;
                     $email_msg .= "\n\nEntry Title: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Entry Updated');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Entry Updated - ' . $item_title);
                 break;
 
                 case 'new_entry':
@@ -475,7 +475,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nChannel: " . $channel_title;
                     $email_msg .= "\n\nEntry ID: " . $item_id;
                     $email_msg .= "\n\nEntry Title: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Entry Created');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Entry Created - ' . $item_title);
                 break;
 
                 case 'template_edit':
@@ -490,7 +490,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nUsername: " . $this->username;
                     $email_msg .= "\n\nTemplate ID: " . $item_id;
                     $email_msg .= "\n\nTemplate Name: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Template Edited');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Template Edited - ' . $item_title);
                 break;
 
                 case 'member_create':
@@ -505,7 +505,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nUsername: " . $this->username;
                     $email_msg .= "\n\nNew Member ID: " . $item_id;
                     $email_msg .= "\n\nNew Member Name: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Created');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Created - ' . $item_title);
                 break;
 
                 case 'member_delete':
@@ -520,7 +520,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nUsername: " . $this->username;
                     $email_msg .= "\n\nDeleted Member ID: " . $item_id;
                     $email_msg .= "\n\nDeleted Member Name: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Deleted');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Deleted - ' . $item_title);
                 break;
 
                 case 'member_edit':
@@ -535,7 +535,7 @@ class Audit_pro_ext {
                     $email_msg .= "\n\nUsername: " . $this->username;
                     $email_msg .= "\n\nEdited Member ID: " . $item_id;
                     $email_msg .= "\n\nEdited Member Name: " . $item_title;
-                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Edited');
+                    $this->EE->email->subject($this->site_label . ': Audit Pro Notification: Member Edited - ' . $item_title);
                 break;
             }
             $email_msg .= "\n\n" . $this->EE->localize->human_time($this->timestamp);
